@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+<BaseLayout
+  title={`${post.data.title} — The Ugly Truth`}
+  description={post.data.subtitle || ''}
+  image={post.data.coverImage || '/og-default.png'}
+>
+  <Header />
+  <main>
+    <article>
+      <header style="padding: 2rem 0 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem;">
+        <time style="color: var(--muted); font-size: 0.95rem;" datetime={post.data.date.toISOString()}>
+          {post.data.date.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric'})}
+        </time>
+        <h1 style="font-family: var(--font-serif); font-size: 2.8rem; line-height: 1.1; letter-spacing: -0.02em; margin: 0.5rem 0 1rem;">
+          {post.data.title}
+        </h1>
+        {post.data.subtitle && (
+          <p style="font-size: 1.3rem; color: var(--muted); line-height: 1.5;">{post.data.subtitle}</p>
+        )}
+        <p style="margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem;">
+          Par <strong style="color: var(--fg);">Nash</strong>
+          {post.data.substackUrl && (
+            <> · <a href={post.data.substackUrl}>Lire sur Substack</a></>
+          )}
+        </p>
+      </header>
+
+      <Content />
+
+      <aside style="margin-top: 3rem; padding: 2rem; background: #f5f5f5; border-radius: 8px; text-align: center;">
+        <p style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.5rem;">Tu aimes The Ugly Truth ?</p>
+        <p style="color: var(--muted); margin-bottom: 1.2rem;">Reçois chaque édition par email. Gratuit, sans spam.</p>
+        <a href="https://nashsuglytruth.substack.com/subscribe" style="display: inline-block; background: var(--fg); color: white; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600;">
+          S'abonner →
+        </a>
+      </aside>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

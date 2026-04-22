@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const latest = posts.slice(0, 10);
+---
+<BaseLayout title="The Ugly Truth — la newsletter sans langue de bois">
+  <Header />
+  <main>
+    <section style="padding: 2rem 0 3rem; border-bottom: 1px solid var(--border);">
+      <h1 style="font-family: var(--font-serif); font-size: 3rem; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem;">
+        The Ugly Truth<span style="color: var(--accent);">.</span>
+      </h1>
+      <p style="font-size: 1.3rem; color: var(--muted); max-width: 560px; line-height: 1.5;">
+        IA, tech, géopolitique, défense. La vérité qui dérange, chaque semaine.
+        Par <strong style="color: var(--fg);">Nash</strong>.
+      </p>
+      <a href="https://nashsuglytruth.substack.com/subscribe" style="display: inline-block; margin-top: 1.5rem; background: var(--fg); color: white; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600;">
+        S'abonner à la newsletter →
+      </a>
+    </section>
+
+    <section style="padding-top: 2rem;">
+      <h2 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1.5rem;">Dernières éditions</h2>
+      {latest.length === 0 ? (
+        <p style="color: var(--muted);">Les archives sont en cours d'import. Reviens dans quelques minutes.</p>
+      ) : (
+        <ul style="list-style: none; padding: 0;">
+          {latest.map(post => (
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <a href={`/blog/${post.slug}/`} style="display: block; color: var(--fg);">
+                <time style="color: var(--muted); font-size: 0.9rem;" datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric'})}
+                </time>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; margin: 0.3rem 0;">{post.data.title}</h3>
+                {post.data.subtitle && (
+                  <p style="color: var(--muted);">{post.data.subtitle}</p>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
