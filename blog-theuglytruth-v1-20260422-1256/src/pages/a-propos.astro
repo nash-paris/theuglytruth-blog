@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="À propos — The Ugly Truth" description="Qui est Nash, et pourquoi The Ugly Truth.">
+  <Header />
+  <main>
+    <h1 style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 1rem;">À propos</h1>
+    <p style="font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem;">
+      The Ugly Truth, c'est la newsletter qui dit les choses comme elles sont. IA, tech, géopolitique, défense — sans langue de bois, sans cocorico, sans catastrophisme.
+    </p>
+    <p>Écrite par <strong>Nash</strong>, fondateur de Light Me Up, depuis Paris, San Francisco et Singapour.</p>
+    <p style="margin-top: 2rem;">
+      <a href="https://nashsuglytruth.substack.com/subscribe" style="display: inline-block; background: var(--fg); color: white; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600;">S'abonner à la newsletter →</a>
+    </p>
+  </main>
+  <Footer />
+</BaseLayout>

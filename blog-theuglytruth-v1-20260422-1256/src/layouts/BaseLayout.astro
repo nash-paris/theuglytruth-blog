@@ -1,0 +1,85 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = "The Ugly Truth — la newsletter tech, IA, géopolitique et défense, sans langue de bois.", image = "/og-default.png" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:site_name" content="The Ugly Truth" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="The Ugly Truth" href="/rss.xml" />
+
+    <style is:global>
+      :root {
+        --bg: #ffffff;
+        --fg: #0a0a0a;
+        --muted: #525252;
+        --accent: #d97706;
+        --border: #e5e5e5;
+        --font-serif: 'Charter', Georgia, serif;
+        --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { -webkit-font-smoothing: antialiased; }
+      body {
+        font-family: var(--font-sans);
+        color: var(--fg);
+        background: var(--bg);
+        line-height: 1.6;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      main { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; }
+      img { max-width: 100%; height: auto; }
+      article h1, article h2, article h3 { font-family: var(--font-serif); margin: 1.8rem 0 0.8rem; line-height: 1.2; }
+      article h1 { font-size: 2.4rem; }
+      article h2 { font-size: 1.8rem; }
+      article p { margin-bottom: 1.2rem; font-size: 1.1rem; }
+      article blockquote {
+        border-left: 3px solid var(--accent);
+        padding-left: 1rem;
+        color: var(--muted);
+        margin: 1.5rem 0;
+        font-style: italic;
+      }
+      article ul, article ol { margin: 1rem 0 1rem 1.5rem; }
+      article li { margin-bottom: 0.3rem; }
+      article img { margin: 1.5rem 0; border-radius: 4px; }
+      article code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
+      article pre { background: #0a0a0a; color: #f5f5f5; padding: 1rem; overflow-x: auto; border-radius: 6px; margin: 1.5rem 0; }
+      article pre code { background: transparent; padding: 0; color: inherit; }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

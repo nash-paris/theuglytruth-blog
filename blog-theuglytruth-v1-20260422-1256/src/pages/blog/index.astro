@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group by year
+const byYear: Record<string, typeof posts> = {};
+posts.forEach(p => {
+  const y = p.data.date.getFullYear().toString();
+  if (!byYear[y]) byYear[y] = [];
+  byYear[y].push(p);
+});
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+---
+<BaseLayout title="Archives — The Ugly Truth" description="Toutes les éditions de The Ugly Truth, par Nash.">
+  <Header />
+  <main>
+    <h1 style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 0.5rem;">Archives</h1>
+    <p style="color: var(--muted); margin-bottom: 3rem;">{posts.length} éditions publiées</p>
+
+    {years.map(year => (
+      <section style="margin-bottom: 3rem;">
+        <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--muted); margin-bottom: 1rem;">{year}</h2>
+        <ul style="list-style: none; padding: 0;">
+          {byYear[year].map(post => (
+            <li style="padding: 0.8rem 0; border-bottom: 1px solid var(--border);">
+              <a href={`/blog/${post.slug}/`} style="display: flex; justify-content: space-between; gap: 1.5rem; color: var(--fg);">
+                <span style="font-family: var(--font-serif); font-size: 1.1rem;">{post.data.title}</span>
+                <time style="color: var(--muted); font-size: 0.9rem; white-space: nowrap;" datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString('fr-FR', {day: '2-digit', month: 'short'})}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </main>
+  <Footer />
+</BaseLayout>
