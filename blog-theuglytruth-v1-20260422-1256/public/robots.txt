@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://theuglytruth.fr/sitemap-index.xml
