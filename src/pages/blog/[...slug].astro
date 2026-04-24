@@ -17,11 +17,71 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+// --- GEO: extract TL;DR from subtitle or first paragraph -------------
+const tldr = post.data.subtitle || post.data.tldr || null;
+
+// --- GEO: build BlogPosting JSON-LD ---------------------------------
+const canonicalUrl = new URL(`/blog/${post.slug}/`, Astro.site).toString();
+const imageUrl = post.data.coverImage
+  ? new URL(post.data.coverImage, Astro.site).toString()
+  : new URL('/og-default.png', Astro.site).toString();
+
+const articleLd: any = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": tldr || post.data.title,
+  "url": canonicalUrl,
+  "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+  "image": imageUrl,
+  "datePublished": post.data.date.toISOString(),
+  "dateModified": post.data.date.toISOString(),
+  "inLanguage": "fr-FR",
+  "author": {
+    "@type": "Person",
+    "name": "Nash HUGHES",
+    "url": "https://theuglytruth.fr/a-propos",
+    "sameAs": ["https://nashsuglytruth.substack.com"],
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Ugly Truth",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://theuglytruth.fr/favicon.svg",
+    },
+  },
+  "articleSection": (post.data.tags && post.data.tags.length > 0) ? post.data.tags[0] : "Actualités",
+  "keywords": (post.data.tags || ["IA", "tech", "géopolitique", "défense"]).join(", "),
+};
+
+// Optional: FAQ block embedded as FAQPage schema, if frontmatter carries `faq`
+const faq = (post.data as any).faq as { question: string; answer: string }[] | undefined;
+const faqLd = faq && faq.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(f => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+  })),
+} : null;
+
+// Combine (article + optional FAQ) in an @graph
+const combinedLd = faqLd
+  ? { "@context": "https://schema.org", "@graph": [articleLd, faqLd] }
+  : articleLd;
 ---
 <BaseLayout
   title={`${post.data.title} — The Ugly Truth`}
-  description={post.data.subtitle || ''}
+  description={tldr || post.data.title}
   image={post.data.coverImage || '/og-default.png'}
+  type="article"
+  publishedTime={post.data.date}
+  modifiedTime={post.data.date}
+  author="Nash HUGHES"
+  jsonLd={combinedLd}
 >
   <Header />
   <main>
@@ -37,14 +97,33 @@ const { Content } = await post.render();
           <p style="font-size: 1.3rem; color: var(--muted); line-height: 1.5;">{post.data.subtitle}</p>
         )}
         <p style="margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem;">
-          Par <strong style="color: var(--fg);">Nash</strong>
+          Par <strong style="color: var(--fg);"><a href="/a-propos" rel="author">Nash</a></strong>
           {post.data.substackUrl && (
-            <> · <a href={post.data.substackUrl}>Lire sur Substack</a></>
+            <> · <a href={post.data.substackUrl} rel="canonical noopener">Lire sur Substack</a></>
           )}
         </p>
       </header>
 
+      {tldr && (
+        <aside class="tldr" aria-label="Résumé de l'article">
+          <strong>À retenir</strong>
+          {tldr}
+        </aside>
+      )}
+
       <Content />
+
+      {faq && faq.length > 0 && (
+        <section style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+          <h2 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 1.5rem;">Questions fréquentes</h2>
+          {faq.map(f => (
+            <details style="margin-bottom: 1rem; padding: 1rem; background: #f5f5f5; border-radius: 6px;">
+              <summary style="font-weight: 600; cursor: pointer;">{f.question}</summary>
+              <p style="margin-top: 0.8rem;">{f.answer}</p>
+            </details>
+          ))}
+        </section>
+      )}
 
       <aside style="margin-top: 3rem; padding: 2rem; background: #f5f5f5; border-radius: 8px; text-align: center;">
         <p style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.5rem;">Tu aimes The Ugly Truth ?</p>

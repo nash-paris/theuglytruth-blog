@@ -3,10 +3,55 @@ export interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: "website" | "article";
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  author?: string;
+  jsonLd?: object;
 }
 
-const { title, description = "The Ugly Truth — la newsletter tech, IA, géopolitique et défense, sans langue de bois.", image = "/og-default.png" } = Astro.props;
+const {
+  title,
+  description = "The Ugly Truth — la newsletter tech, IA, géopolitique et défense, sans langue de bois.",
+  image = "/og-default.png",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  author,
+  jsonLd,
+} = Astro.props;
+
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// Default site-wide JSON-LD (Organization + WebSite)
+const siteLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://theuglytruth.fr#organization",
+      "name": "The Ugly Truth",
+      "url": "https://theuglytruth.fr",
+      "logo": "https://theuglytruth.fr/favicon.svg",
+      "founder": {
+        "@type": "Person",
+        "@id": "https://theuglytruth.fr#nash",
+        "name": "Nash HUGHES",
+        "url": "https://theuglytruth.fr/a-propos",
+        "sameAs": ["https://nashsuglytruth.substack.com"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://theuglytruth.fr#website",
+      "url": "https://theuglytruth.fr",
+      "name": "The Ugly Truth",
+      "description": "IA, tech, géopolitique, défense. La vérité qui dérange, chaque semaine.",
+      "publisher": { "@id": "https://theuglytruth.fr#organization" },
+      "inLanguage": "fr-FR",
+    },
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -21,7 +66,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -29,14 +74,40 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:site_name" content="The Ugly Truth" />
     <meta property="og:locale" content="fr_FR" />
 
+    {type === "article" && publishedTime && (
+      <meta property="article:published_time" content={publishedTime.toISOString()} />
+    )}
+    {type === "article" && modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime.toISOString()} />
+    )}
+    {type === "article" && author && (
+      <meta property="article:author" content={author} />
+    )}
+    {type === "article" && (
+      <meta property="article:section" content="The Ugly Truth" />
+    )}
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.site)} />
 
+    <!-- Robots & AI -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+    <!-- GEO hints -->
+    <meta name="author" content={author || "Nash HUGHES"} />
+    <meta name="article:publisher" content="The Ugly Truth" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="The Ugly Truth" href="/rss.xml" />
+
+    <!-- JSON-LD site-wide -->
+    <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+
+    <!-- JSON-LD page-specific (article, FAQ, etc.) -->
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
     <style is:global>
       :root {
@@ -77,6 +148,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       article code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 0.95em; }
       article pre { background: #0a0a0a; color: #f5f5f5; padding: 1rem; overflow-x: auto; border-radius: 6px; margin: 1.5rem 0; }
       article pre code { background: transparent; padding: 0; color: inherit; }
+
+      .tldr {
+        background: #fef3c7;
+        border-left: 4px solid var(--accent);
+        padding: 1rem 1.25rem;
+        margin: 2rem 0;
+        border-radius: 0 4px 4px 0;
+        font-size: 1.05rem;
+      }
+      .tldr strong { display: block; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.3rem; }
     </style>
   </head>
   <body>
