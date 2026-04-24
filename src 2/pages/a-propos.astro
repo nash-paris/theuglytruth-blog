@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://theuglytruth.fr/a-propos#nash",
+  "name": "Nash HUGHES",
+  "alternateName": "Nash",
+  "description": "Entrepreneur franco-britannique. Fondateur de The Ugly Truth. Conseille les dirigeants sur l'adoption intelligente de l'IA, la robotique, le quantique et l'innovation. Basé à Paris.",
+  "url": "https://theuglytruth.fr/a-propos",
+  "image": "https://theuglytruth.fr/og-default.png",
+  "birthDate": "1977",
+  "nationality": [
+    {"@type": "Country", "name": "France"},
+    {"@type": "Country", "name": "Royaume-Uni"}
+  ],
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Grenoble Ecole de Management",
+    "alternateName": "GEM",
+    "url": "https://www.grenoble-em.com/"
+  },
+  "jobTitle": "Entrepreneur, conseil IA & innovation",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "The Ugly Truth",
+    "url": "https://theuglytruth.fr"
+  },
+  "knowsAbout": [
+    "Intelligence artificielle",
+    "Adoption IA en entreprise",
+    "Robotique",
+    "Informatique quantique",
+    "Innovation",
+    "Stratégie deeptech",
+    "Entrepreneuriat",
+    "Média et télévision",
+    "Communication d'entreprise"
+  ],
+  "homeLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Paris",
+      "addressCountry": "FR"
+    }
+  },
+  "sameAs": [
+    "https://nashsuglytruth.substack.com"
+  ],
+  "mainEntityOfPage": "https://theuglytruth.fr/a-propos"
+};
+---
+<BaseLayout
+  title="À propos de Nash — The Ugly Truth"
+  description="Nash, l'homme qui parlait à l'oreille des dirigeants. Entrepreneur franco-britannique, né en 1977, éveilleur de consciences à l'adoption intelligente de l'IA, la robotique et le quantique. Fondateur de The Ugly Truth."
+  type="article"
+  author="Nash HUGHES"
+  jsonLd={personLd}
+>
+  <Header />
+  <main>
+    <article>
+      <header style="padding: 2rem 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; text-align: center;">
+        <p style="color: var(--accent); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem;">À propos</p>
+        <h1 style="font-family: var(--font-serif); font-size: 3rem; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 1rem;">
+          Nash
+        </h1>
+        <p style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--muted); font-style: italic; line-height: 1.4;">
+          « L'homme qui parlait à l'oreille des dirigeants »
+        </p>
+      </header>
+
+      <div class="bio-prose">
+        <p>Né en 1977 d'une idylle entre la perfide Albion et la France scélérate, Nash est un entrepreneur. Il a 8 ans, quand il commercialise illégalement <em>« le panard enchaîné »</em> sur les pentes de Fourvière à des nonnes désœuvrées et des concertistes hagards… <em>« 5 francs le numéro ! »</em>, le tout imprimé par les machines des burlingues des papas et des mamans de la classe de CE2 !</p>
+
+        <p>Ce sens des affaires et de l'entrepreneuriat, ce leadership et cette envie de faire ne le lâcheront jamais !</p>
+
+        <p>Aujourd'hui dompteur de LLM pour le plus grand plaisir de la plèbe interdite et des leaders ignorants, il explique au monde comment jouer avec l'IA, comment aborder l'innovation, comment embrasser la robotique et envisager le quantique… le tout dans la joie, la gaudriole s'il le faut et le râle symptomatique de l'emport de la moitié française sur la moitié flegmatique du personnage !</p>
+
+        <p>À travers <strong>The Ugly Truth</strong>, ou <strong>« TUT ! »</strong>, comme le crient les klaxoons, c'est en tout cas le ton qu'il a choisi pour évangéliser l'Europe, <em>one village at a time!</em></p>
+
+        <p>On y retrouve sa gouaille dont il se drape depuis toujours et ses années d'études à GEM, on y retrouve son ouverture acquise sur trois continents dont deux où il a surfé l'aventure entrepreneuriale parfois avec brio, parfois moins, on y retrouve aussi ses marottes et ses passions qui l'ont peu à peu transformé en « geek à retardement » ayant préféré courir le guilledou aux maths durant sa jeunesse, mais saurait-on le blâmer lui qui est aujourd'hui papa de quatre charmantes jeunes filles ?</p>
+
+        <p>Aujourd'hui après 15 ans passés à faire le saltimbanque en télévision, quelques temps dans la com et la fidélisation en CDI, 20 ans d'entrepreneuriat, quelques startups, quelques vies en Californie ou en Asie, posé à Paris pour un temps indéfini, il a pour mission nouvelle d'éveiller les consciences à l'adoption intelligente de l'IA en entreprise…</p>
+
+        <p style="font-size: 1.2rem; font-family: var(--font-serif); font-style: italic; color: var(--accent); text-align: center; margin: 2.5rem 0 3rem;">Et il y a à faire, c'est le moins que l'on puisse dire !<br/>Mais pour combien de temps ?…</p>
+      </div>
+
+      <aside style="margin-top: 3rem; padding: 2rem; background: #f5f5f5; border-radius: 8px; text-align: center;">
+        <p style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem;">Rejoins l'aventure</p>
+        <p style="color: var(--muted); margin-bottom: 1.2rem;">IA, tech, géopolitique, défense. Chaque semaine, sans langue de bois.</p>
+        <a href="https://nashsuglytruth.substack.com/subscribe" style="display: inline-block; background: var(--fg); color: white; padding: 0.9rem 1.8rem; border-radius: 4px; font-weight: 600; font-size: 1.05rem;">
+          S'abonner à The Ugly Truth →
+        </a>
+      </aside>
+    </article>
+  </main>
+  <Footer />
+
+  <style>
+    .bio-prose p {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+    .bio-prose p:first-of-type::first-letter {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      float: left;
+      line-height: 1;
+      padding-right: 0.6rem;
+      padding-top: 0.3rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+  </style>
+</BaseLayout>
