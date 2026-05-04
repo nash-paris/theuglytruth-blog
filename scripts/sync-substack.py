@@ -114,6 +114,7 @@ class Post:
     url: str
     slug: str
     html: str
+    cover_image_url: Optional[str] = None  # Cover officiel choisi par l'auteur sur Substack
 
 # --------------------------------------------------------------------------- #
 # Utilitaires
@@ -132,11 +133,12 @@ def save_state(state: dict) -> None:
     STATE_FILE.write_text(json.dumps(state, indent=2, ensure_ascii=False))
 
 def should_keep(title: str) -> bool:
-    """Garde uniquement les posts 'The Ugly Truth' hors podcasts."""
+    """Garde uniquement les posts 'The Ugly Truth' hors podcasts/audio."""
     if not title:
         return False
     low = title.lower()
-    if "podcast" in low:
+    # Filtre les podcasts et versions audio
+    if "podcast" in low or " audio" in low or low.endswith("audio"):
         return False
     return "ugly truth" in low
 
@@ -216,20 +218,33 @@ def fetch_archive_posts(limit: Optional[int] = None) -> list[Post]:
     Remarque : nécessite une session authentifiée pour accéder aux posts privés.
     Pour du contenu public, les URLs publiques marchent sans cookie.
     """
-    print(f"📡 Fetch archive API : {SUBSTACK_ARCHIVE_API}")
+    print(f"📡 Fetch archive API : {SUBSTACK_ARCHIVE_API}", flush=True)
     all_meta = []
     offset = 0
+    page = 0
     while True:
-        r = requests.get(f"{SUBSTACK_ARCHIVE_API}?sort=new&offset={offset}&limit=25", headers=HEADERS, timeout=30)
+        url = f"{SUBSTACK_ARCHIVE_API}?sort=new&offset={offset}&limit=25"
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=30)
+        except Exception as e:
+            print(f"  ⚠️  Network error page {page} : {e}, fallback RSS", file=sys.stderr, flush=True)
+            return fetch_feed_posts(limit)
         if not r.ok:
-            print(f"  ⚠️  HTTP {r.status_code}, fallback RSS", file=sys.stderr)
+            print(f"  ⚠️  HTTP {r.status_code} page {page}, fallback RSS", file=sys.stderr, flush=True)
             return fetch_feed_posts(limit)
         batch = r.json()
+        page += 1
+        # Fin réelle : seulement quand le batch est vide
         if not batch:
+            print(f"  ✓ Page {page} vide → fin pagination ({len(all_meta)} posts récupérés)", flush=True)
             break
         all_meta.extend(batch)
-        offset += 25
-        if len(batch) < 25:
+        # Avancer du nombre réel reçu (Substack peut renvoyer < 25 en 1re page)
+        offset += len(batch)
+        print(f"  ✓ Page {page} : {len(batch)} posts (total {len(all_meta)})", flush=True)
+        # Garde-fou : safety stop après 20 pages = 500 posts max
+        if page >= 20:
+            print(f"  ⚠️  Safety stop à 20 pages", file=sys.stderr, flush=True)
             break
     posts = []
     for meta in all_meta:
@@ -254,6 +269,7 @@ def fetch_archive_posts(limit: Optional[int] = None) -> list[Post]:
             url=url,
             slug=meta.get("slug") or clean_slug("", title),
             html=html,
+            cover_image_url=meta.get("cover_image") or None,
         ))
         if limit and len(posts) >= limit:
             break
@@ -393,6 +409,18 @@ def process_post(post: Post, dry_run: bool = False) -> bool:
     # 1. Remplace les URLs d'images par des chemins locaux
     cover_image = None
     post_images_dir = IMAGES_DIR / post.slug
+
+    # 1a. Cover officiel choisi par l'auteur sur Substack (prioritaire)
+    if post.cover_image_url:
+        filename = sanitize_image_filename(post.cover_image_url)
+        dest = post_images_dir / filename
+        if not dry_run:
+            if download_and_optimize_image(post.cover_image_url, dest):
+                cover_image = f"/images/posts/{post.slug}/{filename}"
+        else:
+            cover_image = f"/images/posts/{post.slug}/{filename}"
+
+    # 1b. Toutes les images du body — réécriture vers chemins locaux
     for img in soup.find_all("img"):
         src = img.get("src") or img.get("data-src") or ""
         if not src or not src.startswith("http"):
@@ -405,6 +433,7 @@ def process_post(post: Post, dry_run: bool = False) -> bool:
                 continue
         local_path = f"/images/posts/{post.slug}/{filename}"
         img["src"] = local_path
+        # Fallback : si pas de cover officiel, prendre la 1re img du body
         if not cover_image:
             cover_image = local_path
 
