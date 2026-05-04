@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "theuglytruth-blog",
+  "account_id": "5631bc9d5613a3d2bc8f90251b8c7c1c",
   "compatibility_date": "2025-04-22",
   "assets": {
     "directory": "./dist",
