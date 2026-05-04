@@ -8,46 +8,285 @@ const posts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const latest = posts.slice(0, 10);
+const hero = posts[0];
+const recents = posts.slice(1, 9);
+
+const fmt = (d: Date) => d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<BaseLayout title="The Ugly Truth — la newsletter sans langue de bois">
+<BaseLayout title="The Ugly Truth — la newsletter sans langue de bois, by Nash">
   <Header />
-  <main>
-    <section style="padding: 2rem 0 3rem; border-bottom: 1px solid var(--border);">
-      <h1 style="font-family: var(--font-serif); font-size: 3rem; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem;">
+  <main class="home-main">
+
+    <!-- Intro / pitch -->
+    <section class="intro">
+      <h1 class="intro-title">
         The Ugly Truth<span style="color: var(--accent);">.</span>
       </h1>
-      <p style="font-size: 1.3rem; color: var(--muted); max-width: 560px; line-height: 1.5;">
-        IA, tech, géopolitique, défense. La vérité qui dérange, chaque semaine.
-        Par <strong style="color: var(--fg);">Nash</strong>.
+      <p class="intro-tagline">
+        IA, tech, géopolitique, défense. La vérité qui dérange, chaque semaine.<br/>
+        Par <strong>Nash</strong>.
       </p>
-      <a href="https://nashsuglytruth.substack.com/subscribe" style="display: inline-block; margin-top: 1.5rem; background: var(--fg); color: white; padding: 0.8rem 1.5rem; border-radius: 4px; font-weight: 600;">
-        S'abonner à la newsletter →
+      <a class="cta-primary" href="https://nashsuglytruth.substack.com/subscribe">
+        S'abonner gratuitement à la newsletter →
       </a>
     </section>
 
-    <section style="padding-top: 2rem;">
-      <h2 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1.5rem;">Dernières éditions</h2>
-      {latest.length === 0 ? (
-        <p style="color: var(--muted);">Les archives sont en cours d'import. Reviens dans quelques minutes.</p>
-      ) : (
-        <ul style="list-style: none; padding: 0;">
-          {latest.map(post => (
-            <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-              <a href={`/blog/${post.slug}/`} style="display: block; color: var(--fg);">
-                <time style="color: var(--muted); font-size: 0.9rem;" datetime={post.data.date.toISOString()}>
-                  {post.data.date.toLocaleDateString('fr-FR', {day: 'numeric', month: 'long', year: 'numeric'})}
+    {hero && (
+      <!-- Hero / dernière édition -->
+      <section class="hero-section">
+        <p class="section-label">Dernière édition</p>
+        <a href={`/blog/${hero.slug}/`} class="hero-card">
+          {hero.data.coverImage && (
+            <div class="hero-cover">
+              <img src={hero.data.coverImage} alt={hero.data.title} loading="eager" />
+            </div>
+          )}
+          <div class="hero-body">
+            <time class="post-date" datetime={hero.data.date.toISOString()}>
+              {fmt(hero.data.date)}
+            </time>
+            <h2 class="hero-title">{hero.data.title}</h2>
+            {hero.data.tldr && (
+              <p class="hero-tldr">{hero.data.tldr}</p>
+            )}
+            {hero.data.subtitle && !hero.data.tldr && (
+              <p class="hero-subtitle">{hero.data.subtitle}</p>
+            )}
+            <span class="read-more">Lire l'édition →</span>
+          </div>
+        </a>
+      </section>
+    )}
+
+    {recents.length > 0 && (
+      <section class="grid-section">
+        <p class="section-label">Éditions récentes</p>
+        <div class="post-grid">
+          {recents.map(post => (
+            <a href={`/blog/${post.slug}/`} class="post-card">
+              {post.data.coverImage && (
+                <div class="card-cover">
+                  <img src={post.data.coverImage} alt={post.data.title} loading="lazy" />
+                </div>
+              )}
+              <div class="card-body">
+                <time class="post-date" datetime={post.data.date.toISOString()}>
+                  {fmt(post.data.date)}
                 </time>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; margin: 0.3rem 0;">{post.data.title}</h3>
+                <h3 class="card-title">{post.data.title}</h3>
                 {post.data.subtitle && (
-                  <p style="color: var(--muted);">{post.data.subtitle}</p>
+                  <p class="card-subtitle">{post.data.subtitle}</p>
                 )}
-              </a>
-            </li>
+              </div>
+            </a>
           ))}
-        </ul>
-      )}
-    </section>
+        </div>
+        <div class="archive-link-wrap">
+          <a href="/blog/" class="archive-link">Voir toutes les éditions ({posts.length}) →</a>
+        </div>
+      </section>
+    )}
   </main>
   <Footer />
+
+  <style>
+    .home-main {
+      max-width: 1100px;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* Intro */
+    .intro {
+      padding: 1rem 0 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .intro-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.8rem;
+    }
+    .intro-tagline {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
+    }
+    .intro-tagline strong { color: var(--fg); }
+    .cta-primary {
+      display: inline-block;
+      background: var(--fg);
+      color: white;
+      padding: 0.95rem 1.8rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: background 0.15s;
+    }
+    .cta-primary:hover {
+      background: var(--accent);
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* Hero */
+    .hero-section { margin-bottom: 3.5rem; }
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      color: var(--fg);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.18s, transform 0.18s;
+    }
+    @media (min-width: 720px) {
+      .hero-card { grid-template-columns: 1.2fr 1fr; gap: 0; }
+    }
+    .hero-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,.08);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+    .hero-cover {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+    .hero-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-body {
+      padding: 2rem 2rem 2.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      line-height: 1.2;
+      margin: 0.5rem 0 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-tldr, .hero-subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .read-more {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+
+    /* Grid */
+    .grid-section { margin-bottom: 2rem; }
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.6rem;
+    }
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      color: var(--fg);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .post-card:hover {
+      box-shadow: 0 6px 22px rgba(0,0,0,.07);
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+    .card-cover {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+    .card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 1rem 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-subtitle {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .post-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+    }
+
+    .archive-link-wrap {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .archive-link {
+      display: inline-block;
+      padding: 0.75rem 1.4rem;
+      border: 1px solid var(--fg);
+      color: var(--fg);
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background 0.15s, color 0.15s;
+    }
+    .archive-link:hover {
+      background: var(--fg);
+      color: white;
+      text-decoration: none;
+    }
+  </style>
 </BaseLayout>

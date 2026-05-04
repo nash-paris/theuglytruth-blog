@@ -130,6 +130,8 @@ const siteLd = {
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; }
       main { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; }
+      /* Pages can override main width via a wider parent class */
+      main.home-main, main.archives-main { max-width: 1100px; }
       img { max-width: 100%; height: auto; }
       article h1, article h2, article h3 { font-family: var(--font-serif); margin: 1.8rem 0 0.8rem; line-height: 1.2; }
       article h1 { font-size: 2.4rem; }
