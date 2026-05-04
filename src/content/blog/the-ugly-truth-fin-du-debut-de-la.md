@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus 'politique 2027'. Moins de
 tldr: "Pour VIVATECH n’oublie pas : pour les 10 ans du salon, je t’offre une promo magique de 20% sur tes tickets d’entrée avec le code NASH20 !!!!!"
 date: 2026-04-28
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-fin-du-debut-de-la"
-coverImage: "/images/posts/the-ugly-truth-fin-du-debut-de-la/https-3a-2f-2fsubstack-post-me-8de7b35ac5.webp"
+coverImage: "/images/posts/the-ugly-truth-fin-du-debut-de-la/https-3a-2f-2fsubstack-post-me-addf7716e9.webp"
 entities: ["EDITO", "NASH", "WHISPER", "VALLEY", "Gemini", "Google", "Anthropic", "Claude", "Figma", "Prometheus", "Jeff", "Cognition", "Apple", "Résultats", "GAFAM"]
 ---
 #### **🔊 EDITO BY NASH**

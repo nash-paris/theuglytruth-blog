@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "Si l’on m’avait dit qu’avec l’arrivée de Trump, l’Europe reprendrait du poil de la bête, je ne l’aurais pas cru !"
 date: 2025-03-23
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-make-europe-great"
-coverImage: "/images/posts/the-ugly-truth-make-europe-great/https-3a-2f-2fsubstack-post-me-44bc63e5ce.webp"
+coverImage: "/images/posts/the-ugly-truth-make-europe-great/https-3a-2f-2fsubstack-post-me-8dc4a1a50b.webp"
 entities: ["EDITO", "NASH", "Apple", "Trumpette", "VEUT", "PERKS", "LOUVE", "INVEST", "WHISPER", "VALLEY", "Lithium", "Fusion", "Nord", "Hugging Face", "Maison Blanche"]
 ---
 #### 🔊 EDITO BY NASH

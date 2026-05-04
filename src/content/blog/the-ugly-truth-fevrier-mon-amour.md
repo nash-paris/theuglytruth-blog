@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Parler du temps qu’il fait, c’est oublier un peu le temps qui passe et par les temps qui courent ça signifie surtout qu’on a pris des vacances de Trump… un peu chassé des terres du ‘sensationnel’ par Epstein, mais jamais trop loin non plus, un chouïa éclipsées par notre Jack national, les frasques de la…"
 date: 2026-02-11
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-fevrier-mon-amour"
-coverImage: "/images/posts/the-ugly-truth-fevrier-mon-amour/https-3a-2f-2fsubstack-post-me-9f04eb058a.webp"
+coverImage: "/images/posts/the-ugly-truth-fevrier-mon-amour/https-3a-2f-2fsubstack-post-me-f0e96386e2.webp"
 entities: ["EDITO", "NASH", "WHISPER", "VALLEY", "Moltbook", "Dario Amodei", "Claude Cowork", "OpenAI", "Mistral", "MaSaaSre", "Seedance", "Mais", "Apple", "Kling", "OpenClaw"]
 ---
 #### **🔊 EDITO BY NASH**

@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Comme tu as tout bien suivi de ton côté depuis dix jours, je te fais un résumé rapide de la situation dans le monde, juste au cas où !"
 date: 2026-03-25
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-ormuz-je-te-tiens"
-coverImage: "/images/posts/the-ugly-truth-ormuz-je-te-tiens/https-3a-2f-2fsubstack-post-me-e108189820.webp"
+coverImage: "/images/posts/the-ugly-truth-ormuz-je-te-tiens/https-3a-2f-2fsubstack-post-me-8ac91f3831.webp"
 entities: ["EDITO", "NASH", "Programme", "Trump", "WHISPER", "VALLEY", "OpenAI", "Bezos", "Venezia", "Cursor", "Mini", "Nano", "Contrebande", "One-Person Companies", "Alibaba"]
 ---
 #### **🔊 EDITO BY NASH**

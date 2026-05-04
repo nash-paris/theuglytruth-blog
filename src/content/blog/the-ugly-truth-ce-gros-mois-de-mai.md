@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "Tu m’excuseras pour ces 3 semaines d’absence : mais avec une annonce toutes les deux heures en moyenne depuis plusieurs jours, je n’ai jamais vraiment trouvé le « bon moment » pour sortir ma newsletter… donc tu vas à nouveau bouffer du Kling, du OpenAI et du Google : je te prie de bien vouloir…"
 date: 2025-06-03
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-ce-gros-mois-de-mai"
-coverImage: "/images/posts/the-ugly-truth-ce-gros-mois-de-mai/https-3a-2f-2fsubstack-post-me-396ef3a4af.webp"
+coverImage: "/images/posts/the-ugly-truth-ce-gros-mois-de-mai/https-3a-2f-2fsubstack-post-me-c10136355c.webp"
 entities: ["EDITO", "NASH", "Champions League", "Always", "VEUT", "PERKS", "WHISPER", "VALLEY", "Ben Evans", "Google", "Mistral", "Altman", "Tesla", "Meta Quest", "Elon"]
 ---
 #### **🔊 EDITO BY NASH**

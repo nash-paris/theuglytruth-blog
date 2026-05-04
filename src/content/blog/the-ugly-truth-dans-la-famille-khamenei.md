@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "« Comme on ne sait pas ce que l’on fait, on peut être certains que l’Iran non plus ne sait pas ce que nous faisons ! »"
 date: 2026-03-11
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-dans-la-famille-khamenei"
-coverImage: "/images/posts/the-ugly-truth-dans-la-famille-khamenei/https-3a-2f-2fsubstack-post-me-5c33892157.webp"
+coverImage: "/images/posts/the-ugly-truth-dans-la-famille-khamenei/https-3a-2f-2fsubstack-post-me-b2740659c1.webp"
 entities: ["EDITO", "NASH", "Dieu", "WHISPER", "VALLEY", "OpenAI", "Claude", "Anthropic", "Fei-Fei", "Ricursive", "Chine", "Le Match Europe", "Ethique", "QuSecure", "Alibaba"]
 ---
 #### **🔊 EDITO BY NASH**

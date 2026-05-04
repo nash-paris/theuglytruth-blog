@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "« Moi, Nash, actuellement loin de Londres, j'invite les innovateurs et les geeks français qui se trouvent près de leur ordinateur ou qui viendraient à s'y trouver, avec leurs projets ou sans leurs projets, j'invite les ingénieurs et les développeurs fullstack des industries d’avenir qui se trouvent dans le coin ou qui viendraient à s'y…"
 date: 2025-06-19
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-0-guerre-0-politique"
-coverImage: "/images/posts/the-ugly-truth-0-guerre-0-politique/https-3a-2f-2fsubstack-post-me-0b1619445c.webp"
+coverImage: "/images/posts/the-ugly-truth-0-guerre-0-politique/https-3a-2f-2fsubstack-post-me-0b11762e46.webp"
 entities: ["EDITO", "NASH", "VEUT", "PERKS", "WHISPER", "VALLEY", "Nanonet", "Google", "Gemini", "Martine", "Quoi", "FOOD", "THOUGHT", "Sam Altman", "Jack Altman"]
 ---
 #### **🔊 EDITO BY NASH**

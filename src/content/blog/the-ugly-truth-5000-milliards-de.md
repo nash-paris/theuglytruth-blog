@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Je vais commencer, une fois n’est pas coutume, par un coup de pub pour nous, parce que d’une part, ça ne mange pas de pain, et d’autre part, parce que c’est bon pour la santé !"
 date: 2025-10-31
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-5000-milliards-de"
-coverImage: "/images/posts/the-ugly-truth-5000-milliards-de/https-3a-2f-2fsubstack-post-me-14133de272.webp"
+coverImage: "/images/posts/the-ugly-truth-5000-milliards-de/https-3a-2f-2fsubstack-post-me-c497008084.webp"
 entities: ["Edito", "Notre", "AI Leadership Program", "Leaders", "Donc", "Photo", "Marrant", "Amnesty International", "TikTok", "Tiens", "Bref", "Cette", "Christian Riedi", "Linkedin", "Christian"]
 ---
 # **Edito :**

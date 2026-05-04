@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus 'politique 2027'. Moins de
 tldr: "Cet Edito manque terriblement de Céline Dion, d’oeufs de Pâques ou de Donald farci !"
 date: 2026-04-08
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-poison-davril"
-coverImage: "/images/posts/the-ugly-truth-poison-davril/https-3a-2f-2fsubstack-post-me-c362f60899.webp"
+coverImage: "/images/posts/the-ugly-truth-poison-davril/https-3a-2f-2fsubstack-post-me-0afc82017d.webp"
 entities: ["EDITO", "NASH", "WHISPER", "VALLEY", "Sora", "Rousse", "Shopping", "Bulle", "Avocado", "Meta", "Mars", "Anthropic", "Waymo", "Fidji", "Matt Gallagher"]
 ---
 #### **🔊 EDITO BY NASH**

@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Une bien triste fin d’hiver qui nous emmène au rythme lent de la sonnerie aux morts de Lugdunum à l’Assemblée Nationale, lançant par la même occasion d’une manière bien étrange la campagne des municipales dans notre pays !"
 date: 2026-02-21
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-je-couche-avec-claude"
-coverImage: "/images/posts/the-ugly-truth-je-couche-avec-claude/https-3a-2f-2fsubstack-post-me-b0a3b78320.webp"
+coverImage: "/images/posts/the-ugly-truth-je-couche-avec-claude/https-3a-2f-2fsubstack-post-me-36a6ed249d.webp"
 entities: ["EDITO", "NASH", "Palace", "WHISPER", "VALLEY", "Le Donald", "Juges", "Gemini", "OpenAI", "Anthropic", "Yann", "LeCun", "Oracle", "AI-Act", "Omnibus"]
 ---
 #### **🔊 EDITO BY NASH**

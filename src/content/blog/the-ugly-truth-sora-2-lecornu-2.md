@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Alors que j’écris, nous ne savons pas encore si le gouvernement Lecornu 2 passera la semaine."
 date: 2025-10-16
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-sora-2-lecornu-2"
-coverImage: "/images/posts/the-ugly-truth-sora-2-lecornu-2/https-3a-2f-2fsubstack-post-me-a383839480.webp"
+coverImage: "/images/posts/the-ugly-truth-sora-2-lecornu-2/5c64d91f-16b6-44cd-aea8-182551-a23beabb9a.webp"
 entities: ["Edito", "Alors", "Lecornu", "Suspens", "Pendant", "Bourse", "Linkedin", "TikTok", "Saint-Denis", "Modestement", "Tout", "Cette", "Mais", "Kathia", "Kevin"]
 ---
 # **Edito :**

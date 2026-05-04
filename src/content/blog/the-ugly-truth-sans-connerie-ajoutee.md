@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Ici, cette fois-ci, pas de Zucman, pas de populiste canardé, pas de moqueries sur l’ambulance gouvernementale Française, pas de Jimmy Kimmel, pas jeu concours pour régler la dette…"
 date: 2025-09-19
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-sans-connerie-ajoutee"
-coverImage: "/images/posts/the-ugly-truth-sans-connerie-ajoutee/https-3a-2f-2fsubstack-post-me-082bb3e584.webp"
+coverImage: "/images/posts/the-ugly-truth-sans-connerie-ajoutee/efd841f8-1d78-4b9f-9cd1-50eabf-6b6db498c2.webp"
 entities: ["EDITO", "Nash Ici", "Zucman", "Française", "Jimmy Kimmel", "Mais", "LinkedIn", "ENFIN", "Enfin", "Alors", "Quand", "Traduction", "Résultat", "Ajuste", "Entre"]
 ---
 # EDITO by Nash

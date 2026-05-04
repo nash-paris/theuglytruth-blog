@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Meilleurs vœux 2026 à toi, tes proches, tes connaissances, tes collègues, tes agents IA et tes animaux domestiques."
 date: 2026-01-07
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-bonne-annee-bonne"
-coverImage: "/images/posts/the-ugly-truth-bonne-annee-bonne/https-3a-2f-2fsubstack-post-me-a719f3e633.webp"
+coverImage: "/images/posts/the-ugly-truth-bonne-annee-bonne/https-3a-2f-2fsubstack-post-me-14937371db.webp"
 entities: ["SOMMAIRE", "SPECIAL", "NUMERO", "CONSUMER", "ELECTRONIC", "SHOW", "VEGAS", "ÉDITO", "NASH Archetype", "Meilleurs", "Libre", "Mais", "Alors", "Avant", "Venezuela"]
 ---
 # SOMMAIRE SPECIAL “CES” :

@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "Depuis l’annonce fracassante de Donald Trump le 2 avril dernier sur une série de tarifs douaniers réciproques (et réciproque, le mot est mal pesé !), les marchés financiers mondiaux ont plongé dans une spirale infernale."
 date: 2025-04-09
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-10-pour-les-pingouins"
-coverImage: "/images/posts/the-ugly-truth-10-pour-les-pingouins/https-3a-2f-2fsubstack-post-me-0a90d77bac.webp"
+coverImage: "/images/posts/the-ugly-truth-10-pour-les-pingouins/https-3a-2f-2fsubstack-post-me-da45fe22b0.webp"
 entities: ["EDITO", "NASH", "VEUT", "PERKS", "Rien", "WHISPER", "VALLEY", "Stanford", "Llama", "Pérou", "Bérézina", "Midjourney", "Ghibli Boulga", "Scandale", "Mirage"]
 ---
 #### 🔊 EDITO BY NASH

@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus 'politique 2027'. Moins de
 tldr: "L’ennemi de l’intérieur, ce mouchard populiste de l’Est, profiteur de subventions et avare de prêts pour la liberté, est mort."
 date: 2026-04-17
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-viktor-orbanned"
-coverImage: "/images/posts/the-ugly-truth-viktor-orbanned/https-3a-2f-2fsubstack-post-me-7e1d366317.webp"
+coverImage: "/images/posts/the-ugly-truth-viktor-orbanned/https-3a-2f-2fsubstack-post-me-9a3cd33aca.webp"
 entities: ["EDITO", "NASH", "Edito", "WHISPER", "VALLEY", "Anthropic", "Mythos", "Meta", "Muse Spark", "Copilot", "Vera Rubin", "Mistral", "Prouve", "Deepseek", "Alibaba"]
 ---
 #### **🔊 EDITO BY NASH**

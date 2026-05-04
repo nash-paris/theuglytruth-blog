@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "Rentrer en France pour s’apercevoir qu’on a le pays le plus con de la planète. (je dis “pays” pour éviter d’avoir à énumérer les-dits zozos !)."
 date: 2025-08-29
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-les-politiques-les"
-coverImage: "/images/posts/the-ugly-truth-les-politiques-les/https-3a-2f-2fsubstack-post-me-5ad051ee0a.webp"
+coverImage: "/images/posts/the-ugly-truth-les-politiques-les/https-3a-2f-2fsubstack-post-me-caf63a6641.webp"
 entities: ["EDITO", "NASH", "VEUT", "PERKS", "Formation", "WHISPER", "VALLEY", "Apple Intelligence", "Banana", "Vibe-Hacking", "AI-Act", "Adobe", "Starship", "SOMETHING", "COMPLETELY"]
 ---
 #### **🔊 EDITO BY NASH**

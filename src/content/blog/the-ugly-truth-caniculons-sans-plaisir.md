@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "Des Etats-Unis à la bande de Gaza, de Moscou à Téhéran, de la Roumanie à Kiev, sans parler de ce dont on ne parle plus parce que ça n’intéresse personne, tout, absolument tout, a été mis sens dessus dessous depuis six mois !"
 date: 2025-07-02
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-caniculons-sans-plaisir"
-coverImage: "/images/posts/the-ugly-truth-caniculons-sans-plaisir/https-3a-2f-2fsubstack-post-me-32c202de70.webp"
+coverImage: "/images/posts/the-ugly-truth-caniculons-sans-plaisir/https-3a-2f-2fsubstack-post-me-0b9f42f8b3.webp"
 entities: ["EDITO", "NASH", "Bilan", "VEUT", "PERKS", "WHISPER", "VALLEY", "Vers", "Nono", "ChatGPT", "Le Danemark", "Cybersécurité", "SEAL", "Alibaba", "Qwen-Vlo"]
 ---
 #### **🔊 EDITO BY NASH**

@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Alors c’est toujours la guerre à nos portes, c’est toujours une France sans budget, sans sous ni sans vision, et c’est toujours Trump et Xi qui mènent le bal…"
 date: 2025-12-02
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-lamer-noel"
-coverImage: "/images/posts/the-ugly-truth-lamer-noel/https-3a-2f-2fsubstack-post-me-974b31ce2c.webp"
+coverImage: "/images/posts/the-ugly-truth-lamer-noel/https-3a-2f-2fsubstack-post-me-5ddba8408c.webp"
 entities: ["EDITO", "NASH", "Défaites", "WHISPER", "VALLEY", "Trump", "Quantum Systems", "Helsing", "BioValiance", "Google", "NVidia", "ChatGPT", "Apple Podcast", "DeepSeek-Math", "Mixpanel"]
 ---
 #### **🔊 EDITO BY NASH**

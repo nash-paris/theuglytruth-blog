@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "A l’heure où le Donald Corleone veut se payer 2 millions de kilomètres carrés sur le dos du Danemark, je me disais que ce serait bien de rouvrir le livre de comptes !"
 date: 2026-01-21
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-donald-rends-nous"
-coverImage: "/images/posts/the-ugly-truth-donald-rends-nous/https-3a-2f-2fsubstack-post-me-c7af4f07ad.webp"
+coverImage: "/images/posts/the-ugly-truth-donald-rends-nous/https-3a-2f-2fsubstack-post-me-0805336309.webp"
 entities: ["EDITO", "NASH", "HOCUS", "POTUS", "POCUS", "PERKS", "PORKS", "HUMAN", "WHISPER", "VALLEY", "Belgique", "Copilot", "Nettoie", "Ehpad", "Développement"]
 ---
 #### **🔊 EDITO BY NASH**

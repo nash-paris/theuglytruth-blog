@@ -4,7 +4,7 @@ subtitle: "Ta newsletter plus courte, plus cash, plus \"hands on\". Moins de cas
 tldr: "Je vois comme ça, dans le désordre : un budget iso pour la France, une Allemagne qui repart et redevient le moteur de l’Europe économique ; je vois OpenAI en Icare de l’intelligence artificielle se brûler les ailes et finir absorbé par Microsoft pendant que l’on dépèce Oracle victime de son appétit pour la dette…"
 date: 2025-12-17
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-all-i-want-for-xmas-3a2"
-coverImage: "/images/posts/the-ugly-truth-all-i-want-for-xmas-3a2/https-3a-2f-2fsubstack-post-me-c6a8f7a9c2.webp"
+coverImage: "/images/posts/the-ugly-truth-all-i-want-for-xmas-3a2/https-3a-2f-2fsubstack-post-me-555465bbab.webp"
 entities: ["EDITO", "NASH", "WHISPER", "VALLEY", "Juste", "Made", "Etat", "Robot", "Nemotron", "Mira Murati", "Claude", "Quand", "Disney", "Instagram", "SpaceX"]
 ---
 #### 🔊 EDITO BY NASH

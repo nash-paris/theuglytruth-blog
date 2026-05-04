@@ -4,7 +4,7 @@ subtitle: "Cette Newsletter t'accueille dans le monde de demain. J'y parle d'inn
 tldr: "Pendant 15 jours je n’ai pas parlé IA, pas entendu parler d’IA, et même si l’on en avait parlé autour de moi, je n’aurais pas compris quoi qu’il en soit !"
 date: 2025-05-12
 substackUrl: "https://nashsuglytruth.substack.com/p/the-ugly-truth-habemus-papapapam"
-coverImage: "/images/posts/the-ugly-truth-habemus-papapapam/https-3a-2f-2fsubstack-post-me-5d9f10b1f8.webp"
+coverImage: "/images/posts/the-ugly-truth-habemus-papapapam/https-3a-2f-2fsubstack-post-me-1ee5d38688.webp"
 entities: ["EDITO", "NASH", "Conclave", "Fidji", "Japon", "VEUT", "PERKS", "WHISPER", "VALLEY", "Claude", "Apple", "Alphabet", "Cannes", "Mistral", "Wonderfood"]
 ---
 #### **🔊 EDITO BY NASH**
