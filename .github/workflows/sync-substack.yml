@@ -1,32 +1,27 @@
-name: Sync Substack to blog & Deploy
+name: Build & Deploy blog
+
+# La synchronisation Substack ne tourne PLUS sur GitHub Actions : les
+# endpoints /api/v1/archive et /feed renvoient 403 depuis les IP datacenter
+# des runners. Le sync est execute ailleurs (sandbox Cowork) puis pousse ici.
+# Ce workflow se contente donc de builder + deployer le contenu pousse.
 
 on:
-  schedule:
-    - cron: '0 7,19 * * *'
   workflow_dispatch:
   push:
     branches: [main]
     paths-ignore:
-      - 'scripts/.cache/**'
+      - 'scripts/**'
+      - 'README.md'
 
 concurrency:
-  group: sync-and-deploy
+  group: build-and-deploy
   cancel-in-progress: false
 
 jobs:
-  sync-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -34,51 +29,21 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install feedparser requests beautifulsoup4 markdownify python-slugify Pillow anthropic
-
-      - name: Install Node dependencies
+      - name: Install dependencies
         run: npm ci || npm install
-
-      - name: Run sync (with LLM enrichment if key available)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          PYTHONUNBUFFERED: '1'
-        run: |
-          set -e
-          python3 -u scripts/sync-substack.py --source archive
-          echo "===== Posts generes ====="
-          ls -la src/content/blog/ || true
-          echo "========================="
-
-      - name: Commit synced content (skip on push)
-        if: github.event_name != 'push'
-        run: |
-          git config user.name "theuglytruth-sync-bot"
-          git config user.email "sync-bot@theuglytruth.fr"
-          git add src/content/blog/ public/images/ || true
-          if git diff --staged --quiet; then
-            echo "Aucun nouveau contenu a commit."
-          else
-            git commit -m "chore(sync): nouvelles editions depuis Substack [skip ci]"
-            git push
-          fi
 
       - name: Build Astro
         run: npm run build
 
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy
+        run: npx --yes wrangler@4 deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Summary
         if: always()
         run: |
-          echo "## Deploiement blog theuglytruth" >> $GITHUB_STEP_SUMMARY
+          echo "## Blog theuglytruth: build & deploy" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Articles publies : $(ls src/content/blog/*.md 2>/dev/null | grep -v README | wc -l)" >> $GITHUB_STEP_SUMMARY
-          echo "Blog : https://theuglytruth-blog.nash-563.workers.dev" >> $GITHUB_STEP_SUMMARY
+          echo "Editions publiees : $(ls src/content/blog/*.md 2>/dev/null | grep -v README | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "Blog : https://theuglytruth.fr" >> $GITHUB_STEP_SUMMARY
