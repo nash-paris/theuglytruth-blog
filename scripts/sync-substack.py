@@ -81,6 +81,7 @@ def ensure_deps():
 ensure_deps()
 
 import os
+from urllib.parse import quote
 import feedparser
 import requests
 from requests.adapters import HTTPAdapter
@@ -337,9 +338,17 @@ def fetch_feed_posts(limit: Optional[int] = None, full: bool = False) -> list[Po
           f"({'mode complet' if full else 'mode incremental'})", flush=True)
     return posts
 
-def _fetch_archive_page(offset: int) -> Optional[list]:
-    """Recupere une page de l'API archive. None = erreur reseau/HTTP/JSON."""
-    url = f"{SUBSTACK_ARCHIVE_API}?sort=new&offset={offset}&limit=25"
+def _fetch_archive_page(cursor: Optional[str]) -> Optional[tuple]:
+    """Recupere une page de l'API archive. None = erreur reseau/HTTP/JSON.
+
+    Depuis l'automne 2026, Substack refuse le parametre `offset` (HTTP 400) et
+    renvoie {"posts": [...], "nextCursor": "..."} au lieu d'une liste : la
+    pagination se fait par `cursor`. L'ancien format (liste nue) reste accepte.
+    Retourne (liste_des_posts, curseur_suivant_ou_None).
+    """
+    url = f"{SUBSTACK_ARCHIVE_API}?sort=new&limit=25"
+    if cursor:
+        url += "&cursor=" + quote(cursor, safe="")
     try:
         r = get_session().get(
             url, timeout=HTTP_TIMEOUT,
@@ -348,17 +357,26 @@ def _fetch_archive_page(offset: int) -> Optional[list]:
                      "X-Requested-With": "XMLHttpRequest"},
         )
     except Exception as e:
-        print(f"  ⚠️  Erreur reseau (offset {offset}) : {e}", file=sys.stderr, flush=True)
+        print(f"  ⚠️  Erreur reseau (page archive) : {e}", file=sys.stderr, flush=True)
         return None
     if not r.ok:
-        print(f"  ⚠️  HTTP {r.status_code} (offset {offset})", file=sys.stderr, flush=True)
+        print(f"  ⚠️  HTTP {r.status_code} (page archive) : {r.text[:200]}", file=sys.stderr, flush=True)
         return None
     try:
-        return r.json()
+        data = r.json()
     except Exception as e:
         # Page de challenge Cloudflare = HTML, pas du JSON
-        print(f"  ⚠️  Reponse non-JSON (offset {offset}) : {e}", file=sys.stderr, flush=True)
+        print(f"  ⚠️  Reponse non-JSON (page archive) : {e}", file=sys.stderr, flush=True)
         return None
+    if isinstance(data, dict):
+        posts = data.get("posts")
+        if not isinstance(posts, list):
+            print(f"  ⚠️  Format inattendu de l'API archive : cles {list(data)[:6]}", file=sys.stderr, flush=True)
+            return None
+        return posts, data.get("nextCursor")
+    if isinstance(data, list):
+        return data, None
+    return None
 
 def fetch_archive_posts(limit: Optional[int] = None, full: bool = False) -> list[Post]:
     """API interne /api/v1/archive.
@@ -375,14 +393,15 @@ def fetch_archive_posts(limit: Optional[int] = None, full: bool = False) -> list
     print(f"📡 Fetch archive API : {SUBSTACK_ARCHIVE_API}", flush=True)
     new_meta: list[dict] = []
     total_meta = 0
-    offset = 0
+    cursor: Optional[str] = None
     page = 0
     api_ok = False
 
     while True:
-        batch = _fetch_archive_page(offset)
-        if batch is None:
+        res = _fetch_archive_page(cursor)
+        if res is None:
             break  # erreur → on tentera le repli RSS plus bas
+        batch, cursor = res
         api_ok = True
         page += 1
         if not batch:
@@ -410,7 +429,9 @@ def fetch_archive_posts(limit: Optional[int] = None, full: bool = False) -> list
         if page >= 20:
             print(f"  ⚠️  Garde-fou : arret a 20 pages", file=sys.stderr, flush=True)
             break
-        offset += len(batch)
+        if not cursor:
+            print(f"  ✓ Plus de curseur → fin de pagination", flush=True)
+            break
         polite_sleep()
 
     # --- Repli RSS si l'API a echoue ---------------------------------------
